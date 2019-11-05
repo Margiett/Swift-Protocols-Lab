@@ -46,9 +46,24 @@ b. Make the `Human` class adopt the CustomStringConvertible protocol. Then print
 `Human` objects.
 ```
 class Human: CustomStringConvertible {
-var age: Int 
+var age: Int
 var name: String
+
+init(name: String, age: Int){
+self.name = name
+self.age = age
 }
+
+var description: String {
+return "The person's name is \(name) and they are \(age) years young"
+}
+}
+
+var human1 = Human(name: "Margiett", age: 27)
+var zarriah = Human(name: "Xiomara", age: 27)
+
+print("human1")
+print("Xiomara")
 
 ```
 c. Make the `Human` class adopt the Equatable protocol. Two instances of `Human` should be considered equal
@@ -56,6 +71,43 @@ if their names and ages are identical to one another. Print the result of a bool
 evaluating whether or not your two previously initialized `Human` objects are equal to eachother
 (using ==). Then print the result of a boolean expression evaluating whether or not your two
 previously initialized `Human` objects are not equal to eachother (using !=).
+
+My Answer:
+
+```
+class Human: CustomStringConvertible, Equatable {
+    static func == (firstHuman: Human, secondHuman: Human) -> Bool {
+        return firstHuman.name == secondHuman.name && firstHuman.age == secondHuman.age
+    }
+    var age: Int
+    var name: String
+    
+    var description: String {
+            return "The person's name is \(name) and they both are \(age) years young"
+        }
+        
+    init(name: String, age: Int){
+        self.name = name
+        self.age = age
+    }
+}
+
+
+var human1 = Human(name: "Margiett", age: 27)
+var Xiomara = Human(name: "Xiomara", age: 27)
+
+print(human1)
+print(Xiomara)
+
+
+if human1 == Xiomara {
+    print("They are the same person")
+}else{
+    print("These are two different people")
+}
+```
+
+
 
 d. Make the `Human` class adopt the `Comparable` protocol. One `Human` is greater than another `Human` if its age is bigger. Create another
 three instances of a `Human`, then create an array called people of type [`Human`] with all of the
@@ -65,6 +117,50 @@ Create a new array called sortedPeople of type [`Human`] that is the people arra
 
 </br> </br>
 
+My Answer:
+
+```
+class Human: CustomStringConvertible, Comparable {
+    static func == (firstHuman: Human, secondHuman: Human) -> Bool {
+        return false
+    }
+    
+var name: String
+var age: Int
+
+static func > (firstHuman: Human, secondHuman: Human) -> Bool {
+return firstHuman.age > secondHuman.age
+}
+
+
+static func < (firstHuman: Human, secondHuman: Human) -> Bool {
+return firstHuman.age < secondHuman.age
+}
+
+var description: String {
+return "The person's name is \(name) and they are \(age) years young"
+}
+
+    init?(name: String, age: String){
+self.name
+self.age
+    
+    return nil
+    }
+}
+var human1 = "Margiett"
+var human2 = "Xiomara"
+
+//var human1 = Human(name: "Margiett", age: 27)
+//var xiomara = Human(name: "Xiomara", age: 27)
+
+if human1 < human2 {
+    print("\(human1) is older then \(human2)")
+} else {
+    print("\(human2) is older")
+}
+```
+
 
 ## Question 2
 
@@ -72,15 +168,85 @@ a. Create a protocol called `Vehicle` with two requirements:
 - a nonsettable `numberOfWheels` property of type Int,
 - a function called drive().
 
+```
+protocol Vehicle{
+ var numWheels : Int { get }
+
+func drive()
+}
+```
+
 b. Define a `Car` struct that implements the `Vehicle` protocol. `numberOfWheels` should return a value of 4,
 and drive() should print "Vroom, vroom!" Create an instance of `Car`, print its number of wheels,
 then call drive().
+
+My Answer:
+```
+protocol Vehicle{
+ var numWheels : Int { get }
+
+func drive()
+}
+
+struct Car: Vehicle{
+
+var numWheels: Int {
+return 4
+}
+
+func drive() {
+print("vroom, vroom")
+    
+}
+
+}
+
+var Onecar = Car()
+Onecar.drive()
+```
 
 c. Define a Bike struct that implements the `Vehicle` protocol. `numberOfWheels` should return a value of 2,
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
 
 </br> </br>
+
+```
+// Define a Bike struct that implements the `Vehicle` protocol. `numberOfWheels` should return a value of 2,
+
+struct Bike: Vehicle {
+var numberOfWheels: Int {
+    return 2}
+drive() should print "Begin pedaling!
+func drive(){
+print("Begin pedaling!")
+    }
+
+}
+
+//Create an instance of Bike, print its number of wheels, then call drive()
+
+var instanceOfCar: Car {
+.init(numberOfWheels: 4) 
+
+print(instanceOfCar.numberOfWheels)
+instanceOfCar.drive()
+
+struct Bike: Vehicle {
+    var numberOfWheels: Int = 2
+    func drive() {
+        print("Begin Pedaling!!")
+    }
+}
+var instanceOfBike: Bike{
+    .init(numberOfWheels: 2)
+}
+print(instanceOfBike.numberOfWheels)
+instanceOfBike.drive()
+
+
+
+```
 
 
 ## Question 3
@@ -129,16 +295,106 @@ bruceBanner.transform()  // notHulk
 ## Question 5
 
 a. Create a protocol called `Communication`
+```
+protocol Communitcation{
+
+}
+```
 
 b. Give it a property called `message`, of type String, and assign it an explicit getter.
 
+```
+protocol Communication {
+var message: String { get }
+}
+```
+
 c. Create three Classes. `Cow`, `Dog`, `Cat`.
+```
+protocol Communitaction { 
+var message: String { get }
+}
+class Cow{
+}
 
+class Dog{
+}
+
+class Cat {
+}
+```
 d. Have your three classes conform to `Communication`
+```
+protocol Communication {
+var message: String { get }
+}
 
+class Cow: Communication{
+}
+
+class Dog: Communication{
+}
+
+class Cat: Communication{
+}
+```
 e. `message` should return a unique message for each animal when talk is called.
 
+```
+protocol Communication {
+var message: String { get }
+}
+
+class Cow: Communication{
+var message: String {
+return "MOOOO MOOO MOOO"
+    }
+}
+
+class Dog {
+var message {
+    return "ROOF ROOF"
+}
+}
+
+class Cat {
+var message: String {
+return "MEOW MEOW"
+}
+}
+```
+
 f. Put an instance of each of your classes in an array.
+
+```
+protocol Communication {
+var message: String { get }
+}
+
+class Cow: Communication{
+var message: String {
+return "MOOOO MOOO MOOO"
+}
+}
+
+class Dog: Communication{
+var message {
+return "ROOF ROOF"
+}
+}
+
+class Cat: Communication{
+var message {
+return "MEOW MEOW"
+}
+}
+
+var mooMooAnimal = Cow.Communication
+var bestAnimalEver = Dog.Communication
+var meowMeowAnimal = Cat.Communication
+
+var arrayOfAnimals = [mooMooAnimal, bestAnimalEver, meowMeowAnimal]
+```
 
 g. Iterate over the array and have them print their `message` property
 
