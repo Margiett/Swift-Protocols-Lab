@@ -264,7 +264,46 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 ```
+My Answer:
+```
+protocol Bird {
+ var name: String { get }
+ var canFly: Bool { get }
+}
 
+protocol Flyable {
+ var airspeedVelocity: Double { get }
+}
+
+// create a struct for penguin(a flightless bird)
+struct Penguin: Bird {
+var name: String  {
+return "Penguin"
+}
+var canFly: Bool {
+    return false
+    }
+    var isItCute: String
+}
+
+//an eagle.
+struct Eagle: Bird, Flyable{
+
+    // Bird protocol
+var name: String {
+    return "Eagle"
+}
+var canFly: Bool {
+    return true
+}
+
+// Flyable protocol
+var airspeedVelocity: Double{
+    return 65.3
+}
+}
+
+```
 </br> </br>
 
 ## Question 4
